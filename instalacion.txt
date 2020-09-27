@@ -1,0 +1,4 @@
+express
+morgan
+ejs
+mongoose (mongodb)

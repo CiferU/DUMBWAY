@@ -1,0 +1,134 @@
+<%- include ("template/navbar", {title: 'Rutas'})%>
+  <head>
+    <style>
+      .map{
+        height: 600px;
+      width: 100%; 
+      }
+    </style>
+  </head>
+<body>
+  <br><br>
+  
+  <div id="mapdiv" class="map"></div>
+
+  <center>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-info btn-lg btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Seleccione una ruta a seguir
+      </button>
+      <div class="dropdown-menu btn-block">
+        <a class="dropdown-item btn-lg btn-block" href="#">Comercial</a>
+        <a class="dropdown-item btn-lg btn-block" href="#">Turística</a>
+        <a class="dropdown-item btn-lg btn-block" href="#">De comidas</a>
+      </div>
+    </div>
+  </center>
+
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <script>
+    map = new OpenLayers.Map("mapdiv");
+    map.addLayer(new OpenLayers.Layer.OSM());
+
+    var lonLat = new OpenLayers.LonLat( -106.0866438, 28.6464933 )
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+          
+   
+    var center = new OpenLayers.LonLat( -106.086, 28.658 )
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+
+	
+    var fonda = new OpenLayers.LonLat( -106.0889651, 28.6289169 )
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+
+    var tacos = new OpenLayers.LonLat( -106.090620, 28.632718 )
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+
+    var zoom=13;
+
+    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    map.addLayer(markers);
+    
+    markers.addMarker(new OpenLayers.Marker(lonLat));
+    /////////////////////
+
+    var fondaMarker = new OpenLayers.Layer.Markers( "Markerss" );
+    map.addLayer(fondaMarker);
+    
+    markers.addMarker(new OpenLayers.Marker(fonda));
+
+    ////////////////////
+
+    var tacosMarker = new OpenLayers.Layer.Markers( "Markersss" );
+    map.addLayer(tacosMarker);
+    
+    markers.addMarker(new OpenLayers.Marker(tacos));
+
+    //////
+
+    map.setCenter (center, zoom);
+  </script>
+
+<br>
+
+<hr class="featurette-divider" style="background-color: white">
+
+<div class="card-deck">
+  <div class="card" style="background-color: #CA4803">
+    <div class="card-header" style="color: white;">
+      Primera parada
+    </div>
+    <img src="/fonda.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" style="color: white;">Fonda chilanga</h5>
+      <p class="card-text" style="color: white;">Aprovecha tu mañana desayunando un delicioso platillo mexicano, su especialidad son los huevos rancheros.</p>
+    </div>
+    <div class="card-footer">
+      <small style="color: white;">Horario: 09:00 - 21:00</small>
+    </div>
+  </div>
+  <div class="card" style="background-color: #088187;">
+    <div class="card-header" style="color: white;">
+      Segunda parada
+    </div>
+    <img src="tacos.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" style="color: white;">Ricos Tacos</h5>
+      <p class="card-text" style="color: white;">Por la tarde puedes ir a visitar Ricos Tacos y probar su especialidad, los tacos al pastor.</p>
+    </div>
+    <div class="card-footer">
+      <small style="color: white;">Horario: 12:00 - 22:30</small>
+    </div>
+  </div>
+  <div class="card" style="background-color: #5F290C">
+    <div class="card-header" style="color: white;">
+      Tercera parada
+    </div>
+    <img src="/smoke.png" class="card-img-top" alt="...">
+    <div class="card-body" >
+      <h5 class="card-title" style="color: white;">Smoke House</h5>
+      <p class="card-text" style="color: white;">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      <small style="color: white;">Horario: 13:00 - 20:00</small>
+    </div>
+  </div>
+</div>
+
+</body>
+
+<br>
+<br>
+<%- include ("template/footer")%>
